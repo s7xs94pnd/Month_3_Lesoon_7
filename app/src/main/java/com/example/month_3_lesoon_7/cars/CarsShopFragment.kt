@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.month_3_lesoon_7.R
 import com.example.month_3_lesoon_7.databinding.FragmentCarsShopBinding
 import com.google.android.material.carousel.CarouselLayoutManager
@@ -38,14 +39,25 @@ class CarsShopFragment : Fragment() {
 
 
     private fun initAdapter() {
+//        adapter = CarsAdapter(carArr)
+//        //came from onclick item and give position = index
+//        { position->
+//
+//            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.ConFrgCars,
+//                DetailFragment().apply { val bundle =Bundle().apply { putSerializable("car", carArr[position]) }
+//                    arguments = bundle }).addToBackStack(null).commit()
+//
+//        }
+
         adapter = CarsAdapter(carArr)
 
+        { position ->
 
-        //came from onclick item and give position = index
-        { position-> requireActivity().supportFragmentManager.beginTransaction().replace(R.id.conFrgCars,
-                DetailFragment().apply { val bundle =Bundle().apply { putSerializable("car", carArr[position]) }
-                    arguments = bundle }).addToBackStack(null).commit()
-        }
+                val action = CarsShopFragmentDirections.actionCarsShopFragmentToDetailFragment(carArr[position])
+                findNavController().navigate(action)
+            }
+
+
 
 
         binding.apply {

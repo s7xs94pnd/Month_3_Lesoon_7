@@ -34,9 +34,6 @@ class CarsAdapter(var carArr:ArrayList<Car>, var onClick:(position:Int)->Unit): 
     }
 
 
-
-
-
     inner class CarsViewHolder(val binding: ItemCarCardsBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(car: Car){
